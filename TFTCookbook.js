@@ -31,5 +31,10 @@ bot.on('message', msg => {
       }
   });
 
+  bot.on('message', msg => {
+   if (msg.content === '¬check') {
+   msg.reply('I work lol ?!?!?!');
+   }
+   });
 // log in your bot using the token given by the website!
 bot.login('NTkzNDQwNDA3MDUzMTM5OTcw.XRN6-g.X2T7QPYF7IFkesHzKSz37q9OCqE');
