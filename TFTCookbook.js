@@ -19,15 +19,18 @@ bot.on('message', msg => {
 //
 //  }
 //  });
-
+var attachment = null;
   bot.on('message', message => {
       // If the message is '!rip'
       if (message.content === 'bfsword') {
           // Create the attachment using Attachment
-          const attachment = new Attachment('./images/BFSword.png');
+          attachment = new Attachment('./images/BFSword.png');
           // Send the attachment in the message channel
           message.reply("+ 20 Attack Damage");
           message.channel.send(attachment);
+      }
+      if (message.content == 'dual boot') {
+          message.reply("lol it works on both o.O");
       }
   });
 
