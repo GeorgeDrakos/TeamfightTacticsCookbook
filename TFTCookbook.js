@@ -19,20 +19,35 @@ bot.on('message', msg => {
 //
 //  }
 //  });
+
 var attachment = null;
+
   bot.on('message', message => {
       // If the message is '!rip'
-      if (message.content === 'bfsword') {
+      if (message.content === 'b.f sword') {
           // Create the attachment using Attachment
           attachment = new Attachment('./images/BFSword.png');
           // Send the attachment in the message channel
           message.reply("+ 20 Attack Damage");
           message.channel.send(attachment);
       }
-      if (message.content == 'dual boot') {
-          message.reply("lol it works on both o.O");
+      else if (message.content === 'tear of the goddess') {
+        attachment = new Attachment('./images/tofg.png');
+        message.reply("+ 20 Mana");
+        message.channel.send(attachment);
       }
-  });
+      else if (message.content === 'chain vest') {
+        attachment = new Attachment('./images/chainvest.png');
+        message.reply("+20 Armor");
+        message.channel.send(attachment);
+      }
+      else if (message.content === "needlessly large rod") {
+        attachment = new Attachment('./images/needlessly.png');
+        message.reply("+ 20 spell damage)");
+        message.channel.send(attachment);
+      }
 
+
+  });
 // log in your bot using the token given by the website!
 bot.login('NTkzNDQwNDA3MDUzMTM5OTcw.XRN6-g.X2T7QPYF7IFkesHzKSz37q9OCqE');
