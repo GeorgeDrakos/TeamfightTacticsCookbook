@@ -46,6 +46,11 @@ var attachment = null;
         message.reply("+ 20 spell damage)");
         message.channel.send(attachment);
       }
+      else if (message.content === 'recurve bow'){
+        attachment = new Attachment('./images/recurve.png');
+        message.reply("+15% attack speed");
+        message.channel.send(attachment)
+      }
 
 
   });
