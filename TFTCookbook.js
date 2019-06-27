@@ -22,105 +22,114 @@ bot.on('message', message => {
     attachment = new Attachment('./images/BFSword.png')
     // Send the attachment in the message channel
     message.channel.send(attachment)
-    message.channel.send("+ B.F. Sword = Infinity edge")
-    message.channel.send("+ Needlessly large rod = Hextech gunblade")
-    message.channel.send("+ Recurve bow = Sword of the Divine")
-    message.channel.send("+ Tear of the goddess = Spear of Shojin")
-    message.channel.send("+ Chain vest = Guardian Angel")
-    message.channel.send("+ Negatron cloak = The Bloodthirster")
-    message.channel.send("+ Giant's belt = Zeke's Herald")
-    message.channel.send("+ Spatula = Youmuu's Ghostblade")
+    message.reply("+ 20 Attack Damage");
+    message.channel.send("Combinations ========= \n " +
+    "+ B.F. Sword = Infinity edge \n" +
+    "+ Needlessly large rod = Hextech gunblade \n" +
+    "+ Recurve bow = Sword of the Divine \n" +
+    "+ Tear of the goddess = Spear of Shojin \n" +
+    "+ Chain vest = Guardian Angel \n" +
+    "+ Negatron cloak = The Bloodthirster \n" +
+    "+ Giant's belt = Zeke's Herald \n" +
+    "+ Spatula = Youmuu's Ghostblade \n" )
   }
   else if (message.content === "tear of the goddess") {
     attachment = new Attachment('./images/tofg.png')
     message.reply("+ 20 Mana")
     message.channel.send(attachment)
-    message.channel.send("+ B.F. Sword = Spear of Shokin")
-    message.channel.send("+ Needlessly large rod = Luden's Echo")
-    message.channel.send("+ Recurve bow = Statikk Shiv")
-    message.channel.send("+ Tear of the goddess = Seraph's Embrance")
-    message.channel.send("+ Chain vest = Frozen Heart")
-    message.channel.send("+ Negatron cloak = Hush")
-    message.channel.send("+ Giant's belt = Redemption")
-    message.channel.send("+ Spatula = Darkin")
+    message.channel.send("Combinations ========= \n " +
+    "+ B.F. Sword = Spear of Shokin \n" +
+    "+ Needlessly large rod = Luden's Echo \n" +
+    "+ Recurve bow = Statikk Shiv \n" +
+    "+ Tear of the goddess = Seraph's Embrance \n" +
+    "+ Chain vest = Frozen Heart \n" +
+    "+ Negatron cloak = Hush \n" +
+    "+ Giant's belt = Redemption \n" +
+    "+ Spatula = Darkin")
   }
   else if (message.content === "chain vest") {
     attachment = new Attachment('./images/chainvest.png')
     message.reply("+20 Armor")
     message.channel.send(attachment)
-    message.channel.send("+ B.F. Sword = Guardian Angel")
-    message.channel.send("+ Needlessly large rod = Locket of the Iron Solari")
-    message.channel.send("+ Recurve bow = Phantom Dancer")
-    message.channel.send("+ Tear of the goddess = Frozen Heart")
-    message.channel.send("+ Chain vest = Thornmail")
-    message.channel.send("+ Negatron cloak = Sword Breaker")
-    message.channel.send("+ Giant's belt = Red Buff")
-    message.channel.send("+ Spatula = Knight's Vyr")
+    message.channel.send("Combinations ========= \n " +
+    "+ B.F. Sword = Guardian Angel \n" +
+    "+ Needlessly large rod = Locket of the Iron Solari \n" +
+    "+ Recurve bow = Phantom Dancer \n" +
+    "+ Tear of the goddess = Frozen Heart \n" +
+    "+ Chain vest = Thornmail \n" +
+    "+ Negatron cloak = Sword Breaker \n" +
+    "+ Giant's belt = Red Buff \n" +
+    "+ Spatula = Knight's Vyr")
   }
   else if (message.content === "needlessly large rod") {
     attachment = new Attachment('./images/needlessly.png')
     message.reply("+ 20 Spell Damage")
     message.channel.send(attachment)
-    message.channel.send("+ B.F. Sword = Hextech Gunblade")
-    message.channel.send("+ Needlessly large rod = Rabadon's Deathcap")
-    message.channel.send("+ Recurve bow = Guinsoo's Rageblade")
-    message.channel.send("+ Tear of the goddess = Luden's Echo")
-    message.channel.send("+ Chain vest = Locket of the Iron Solari")
-    message.channel.send("+ Negatron cloak = Ionic Spark")
-    message.channel.send("+ Giant's belt = Morellonomicon")
-    message.channel.send("+ Spatula = Yuumi")
+    message.channel.send("Combinations ========= \n " +
+    "+ B.F. Sword = Hextech Gunblade \n" +
+    "+ Needlessly large rod = Rabadon's Deathcap \n" +
+    "+ Recurve bow = Guinsoo's Rageblade \n" +
+    "+ Tear of the goddess = Luden's Echo \n" +
+    "+ Chain vest = Locket of the Iron Solari \n" +
+    "+ Negatron cloak = Ionic Spark \n" +
+    "+ Giant's belt = Morellonomicon \n" +
+    "+ Spatula = Yuumi")
   }
   else if (message.content === "recurve bow"){
     attachment = new Attachment('./images/recurve.png')
     message.reply("+15% Attack Speed")
     message.channel.send(attachment)
-    message.channel.send("+ B.F. Sword = Sword of the Divine")
-    message.channel.send("+ Needlessly large rod = Guinsoo's Rageblade")
-    message.channel.send("+ Recurve bow = Rapid Fire Cannon")
-    message.channel.send("+ Tear of the goddess = Statikk Shiv")
-    message.channel.send("+ Chain vest = Phantom Dancer")
-    message.channel.send("+ Negatron cloak = Cursed Blade")
-    message.channel.send("+ Giant's belt = Titanic Hydra")
-    message.channel.send("+ Spatula = Blade of the Ruined King")
+    message.channel.send("Combinations ========= \n " +
+    "+ B.F. Sword = Sword of the Divine \n" +
+    "+ Needlessly large rod = Guinsoo's Rageblade \n" +
+    "+ Recurve bow = Rapid Fire Cannon \n" +
+    "+ Tear of the goddess = Statikk Shiv \n" +
+    "+ Chain vest = Phantom Dancer \n" +
+    "+ Negatron cloak = Cursed Blade \n" +
+    "+ Giant's belt = Titanic Hydra \n" +
+    "+ Spatula = Blade of the Ruined King")
   }
   else if (message.content === "negatron cloak") {
     attachment = new Attachment('./images/negatron.png')
     message.reply("+ 20 Magic Resistance")
     message.channel.send(attachment)
-    message.channel.send("+ B.F. Sword = The Bloodthirster")
-    message.channel.send("+ Needlessly large rod = Ionic Spark")
-    message.channel.send("+ Recurve bow = Cursed Blade")
-    message.channel.send("+ Tear of the goddess = Hush")
-    message.channel.send("+ Chain vest = Sword Breaker")
-    message.channel.send("+ Negatron cloak = Dragon's Claw")
-    message.channel.send("+ Giant's belt = Zephyr")
-    message.channel.send("+ Spatula = Runaan's Hurricane")
+    message.channel.send("Combinations ========= \n " +
+    "+ B.F. Sword = The Bloodthirster \n " +
+    "+ Needlessly large rod = Ionic Spark \n" +
+    "+ Recurve bow = Cursed Blade \n" +
+    "+ Tear of the goddess = Hush \n" +
+    "+ Chain vest = Sword Breaker \n" +
+    "+ Negatron cloak = Dragon's Claw \n" +
+    "+ Giant's belt = Zephyr \n" +
+    "+ Spatula = Runaan's Hurricane")
   }
   else if (message.content === "giant's belt") {
     attachment = new Attachment('./images/giants.png')
     message.reply("+ 200 Health Points")
     message.channel.send(attachment)
-    message.channel.send("+ B.F. Sword = Zeke's Herald")
-    message.channel.send("+ Needlessly large rod = Morellonomicon")
-    message.channel.send("+ Recurve bow = Titanic Hydra")
-    message.channel.send("+ Tear of the goddess = Redemption")
-    message.channel.send("+ Chain vest = Red Buff")
-    message.channel.send("+ Negatron cloak = Zephyr")
-    message.channel.send("+ Giant's belt = Warmog's Armor")
-    message.channel.send("+ Spatula = Frozen Mallet")
+    message.channel.send("Combinations ========= \n " +
+    "+ B.F. Sword = Zeke's Herald \n" +
+    "+ Needlessly large rod = Morellonomicon \n" +
+    "+ Recurve bow = Titanic Hydra \n" +
+    "+ Tear of the goddess = Redemption \n" +
+    "+ Chain vest = Red Buff \n" +
+    "+ Negatron cloak = Zephyr \n" +
+    "+ Giant's belt = Warmog's Armor \n" +
+    "+ Spatula = Frozen Mallet")
   }
   else if (message.content === "spatula") {
     attachment = new Attachment('./images/spatula.png')
     message.reply(" Unknown effects ")
     message.channel.send(attachment)
-    message.channel.send("+ B.F. Sword = Youmuu's Ghostblade")
-    message.channel.send("+ Needlessly large rod = Yuumi")
-    message.channel.send("+ Recurve bow = Blade of the Ruined King")
-    message.channel.send("+ Tear of the goddess = Darkin")
-    message.channel.send("+ Chain vest = Knight's Vyr")
-    message.channel.send("+ Negatron cloak = Runaan's Hurricane")
-    message.channel.send("+ Giant's belt = Frozen Mallet")
-    message.channel.send("+ Spatula = Force of Nature")
+    message.channel.send("Combinations ========= \n " +
+    "+ B.F. Sword = Youmuu's Ghostblade \n" +
+    "+ Needlessly large rod = Yuumi \n" +
+    "+ Recurve bow = Blade of the Ruined King \n" +
+    "+ Tear of the goddess = Darkin \n" +
+    "+ Chain vest = Knight's Vyr \n" +
+    "+ Negatron cloak = Runaan's Hurricane \n" +
+    "+ Giant's belt = Frozen Mallet \n" +
+    "+ Spatula = Force of Nature")
   }
 
   // combo items
