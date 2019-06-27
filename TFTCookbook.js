@@ -1,79 +1,114 @@
 const {Client, Attachment} = require('discord.js');
 const bot = new Client();
 
+// Item class
+  class Item {
+    constructor (statBonuses,effect,contains,creates,picURL) {
+      this.statBonuses = statBonuses
+      this.effect = effect
+      this.contains = contains
+      this.creates = creates
+      this.picURL = picURL
+    }
+
+      getstatBonuses() {
+        return this.statBonuses
+      }
+      geteffect() {
+        return this.effect
+      }
+      getcontains() {
+        return this.contains
+      }
+      getcreates() {
+        return this.creates
+      }
+      getpicURL() {
+        return this.picURL
+      }
+
+  }
+// base items
+const bfSword = new Item("+20 Attack Damage","","", " +B.F. Sword = Infinity edge,\n" +
+  "+ Needlessly large rod = Hextech gunblade,\n" +
+  "+ Recurve bow = Sword of the Divine,\n" +
+  "+ Tear of the goddess = Spear of Shojin,\n" +
+  "+ Chain vest = Guardian Angel,\n" +
+  "+ Negatron cloak = The Bloodthirster,\n" +
+  "+ Giant's belt = Zeke's Herald,\n" +
+  "+ Spatula = Youmuu's Ghostblade\n","./images/BFSword.png")
+
+const tear = new Item("+20 Mana","","",
+  "B.F. Sword = Spear of Shokin \n" +
+  "+ Needlessly large rod = Luden's Echo \n" +
+  "+ Recurve bow = Statikk Shiv \n" +
+  "+ Tear of the goddess = Seraph's Embrance \n" +
+  "+ Chain vest = Frozen Heart \n" +
+  "+ Negatron cloak = Hush \n" +
+  "+ Giant's belt = Redemption \n" +
+  "+ Spatula = Darkin","./images/tofg.png")
+
+const chainvest = new Item("+ 20 armor","","","+ B.F. Sword = Guardian Angel \n" +
+  "+ Needlessly large rod = Locket of the Iron Solari \n" +
+  "+ Recurve bow = Phantom Dancer \n" +
+  "+ Tear of the goddess = Frozen Heart \n" +
+  "+ Chain vest = Thornmail \n" +
+  "+ Negatron cloak = Sword Breaker \n" +
+  "+ Giant's belt = Red Buff \n" +
+  "+ Spatula = Knight's Vyr", "./images/chainvest.png")
+
+const nlr = new Item("+ 20 Spell Damage","","","+ B.F. Sword = Hextech Gunblade \n" +
+  "+ Needlessly large rod = Rabadon's Deathcap \n" +
+  "+ Recurve bow = Guinsoo's Rageblade \n" +
+  "+ Tear of the goddess = Luden's Echo \n" +
+  "+ Chain vest = Locket of the Iron Solari \n" +
+  "+ Negatron cloak = Ionic Spark \n" +
+  "+ Giant's belt = Morellonomicon \n" +
+  "+ Spatula = Yuumi","./images/needlessly.png")
+
+var attachment = null;
+
 bot.on('ready', () => {
   console.log(`Logged in`)
 });
 
 bot.on('message', msg => {
   if (msg.content === '¬help') {
-    msg.reply('This bot has all information regarding recipes for the' +
-    ' mobile version of autochess')
+    msg.reply("This bot has all information for " +
+    " Teamfight Tactics (Riot's version of autochess)")
   }
 });
 
-var attachment = null;
-
-// base items
 bot.on('message', message => {
-  // If the message is '!rip'
-  if (message.content === "b.f sword") {
+    // Checks what the messagei s and acts accordingly
+    if (message.content === "b.f sword") {
     // Create the attachment using Attachment
-    attachment = new Attachment('./images/BFSword.png')
+    attachment = new Attachment(bfSword.getpicURL())
     // Send the attachment in the message channel
     message.channel.send(attachment)
-    message.reply("+ 20 Attack Damage");
-    message.channel.send("Combinations ========= \n " +
-    "+ B.F. Sword = Infinity edge \n" +
-    "+ Needlessly large rod = Hextech gunblade \n" +
-    "+ Recurve bow = Sword of the Divine \n" +
-    "+ Tear of the goddess = Spear of Shojin \n" +
-    "+ Chain vest = Guardian Angel \n" +
-    "+ Negatron cloak = The Bloodthirster \n" +
-    "+ Giant's belt = Zeke's Herald \n" +
-    "+ Spatula = Youmuu's Ghostblade \n" )
+    message.reply(bfSword.getstatBonuses() +
+    "\n Combinations:\n" + bfSword.getcreates());
   }
   else if (message.content === "tear of the goddess") {
-    attachment = new Attachment('./images/tofg.png')
-    message.reply("+ 20 Mana")
+    attachment = new Attachment(tear.getpicURL())
+    // Send the attachment in the message channel
     message.channel.send(attachment)
-    message.channel.send("Combinations ========= \n " +
-    "+ B.F. Sword = Spear of Shokin \n" +
-    "+ Needlessly large rod = Luden's Echo \n" +
-    "+ Recurve bow = Statikk Shiv \n" +
-    "+ Tear of the goddess = Seraph's Embrance \n" +
-    "+ Chain vest = Frozen Heart \n" +
-    "+ Negatron cloak = Hush \n" +
-    "+ Giant's belt = Redemption \n" +
-    "+ Spatula = Darkin")
+    message.reply(tear.getstatBonuses() +
+    "\n Combinations:\n" + tear.getcreates());
   }
   else if (message.content === "chain vest") {
-    attachment = new Attachment('./images/chainvest.png')
-    message.reply("+20 Armor")
+    attachment = new Attachment(chainvest.getpicURL())
+    // Send the attachment in the message channel
     message.channel.send(attachment)
-    message.channel.send("Combinations ========= \n " +
-    "+ B.F. Sword = Guardian Angel \n" +
-    "+ Needlessly large rod = Locket of the Iron Solari \n" +
-    "+ Recurve bow = Phantom Dancer \n" +
-    "+ Tear of the goddess = Frozen Heart \n" +
-    "+ Chain vest = Thornmail \n" +
-    "+ Negatron cloak = Sword Breaker \n" +
-    "+ Giant's belt = Red Buff \n" +
-    "+ Spatula = Knight's Vyr")
+    message.reply(chainvest.getstatBonuses() +
+    "\n Combinations:\n " + chainvest.getcreates());
   }
   else if (message.content === "needlessly large rod") {
-    attachment = new Attachment('./images/needlessly.png')
-    message.reply("+ 20 Spell Damage")
+    attachment = new Attachment(nlr.getpicURL())
+    // Send the attachment in the message channel
     message.channel.send(attachment)
-    message.channel.send("Combinations ========= \n " +
-    "+ B.F. Sword = Hextech Gunblade \n" +
-    "+ Needlessly large rod = Rabadon's Deathcap \n" +
-    "+ Recurve bow = Guinsoo's Rageblade \n" +
-    "+ Tear of the goddess = Luden's Echo \n" +
-    "+ Chain vest = Locket of the Iron Solari \n" +
-    "+ Negatron cloak = Ionic Spark \n" +
-    "+ Giant's belt = Morellonomicon \n" +
-    "+ Spatula = Yuumi")
+    message.reply(nlr.getstatBonuses() +
+    "\n Combinations:\n" + nlr.getcreates());
   }
   else if (message.content === "recurve bow"){
     attachment = new Attachment('./images/recurve.png')
