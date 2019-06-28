@@ -39,7 +39,7 @@ const bfSword = new Item("+20 Attack Damage","","", " +B.F. Sword = Infinity edg
   "+ Spatula = Youmuu's Ghostblade\n","./images/BFSword.png")
 
 const tear = new Item("+20 Mana","","",
-  "B.F. Sword = Spear of Shokin \n" +
+  "B.F. Sword = Spear of Shojin \n" +
   "+ Needlessly large rod = Luden's Echo \n" +
   "+ Recurve bow = Statikk Shiv \n" +
   "+ Tear of the goddess = Seraph's Embrance \n" +
