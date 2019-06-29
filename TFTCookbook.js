@@ -1,16 +1,18 @@
 const {Client, Attachment} = require('discord.js');
 const bot = new Client();
-
 // Item class
   class Item {
-    constructor (statBonuses,effect,contains,creates,picURL) {
+    constructor (name,statBonuses,effect,contains,creates,picURL) {
+      this.name = name
       this.statBonuses = statBonuses
       this.effect = effect
       this.contains = contains
       this.creates = creates
       this.picURL = picURL
     }
-
+      getname() {
+        return this.name
+      }
       getstatBonuses() {
         return this.statBonuses
       }
@@ -26,10 +28,10 @@ const bot = new Client();
       getpicURL() {
         return this.picURL
       }
-
   }
+
 // base items
-const bfSword = new Item("+20 Attack Damage","","", " +B.F. Sword = Infinity edge,\n" +
+const bfSword = new Item("B.F. Sword","+20 Attack Damage","-","-", " +B.F. Sword = Infinity edge,\n" +
   "+ Needlessly large rod = Hextech gunblade,\n" +
   "+ Recurve bow = Sword of the Divine,\n" +
   "+ Tear of the goddess = Spear of Shojin,\n" +
@@ -37,8 +39,7 @@ const bfSword = new Item("+20 Attack Damage","","", " +B.F. Sword = Infinity edg
   "+ Negatron cloak = The Bloodthirster,\n" +
   "+ Giant's belt = Zeke's Herald,\n" +
   "+ Spatula = Youmuu's Ghostblade\n","./images/BFSword.png")
-
-const tear = new Item("+20 Mana","","",
+const tear = new Item("Tear of the Goddess","+20 Mana","-","-",
   "B.F. Sword = Spear of Shojin \n" +
   "+ Needlessly large rod = Luden's Echo \n" +
   "+ Recurve bow = Statikk Shiv \n" +
@@ -47,17 +48,15 @@ const tear = new Item("+20 Mana","","",
   "+ Negatron cloak = Hush \n" +
   "+ Giant's belt = Redemption \n" +
   "+ Spatula = Darkin","./images/tofg.png")
-
-const chainvest = new Item("+ 20 armor","","","+ B.F. Sword = Guardian Angel \n" +
+const chainvest = new Item("Chain vest","+ 20 armor","-","-","+ B.F. Sword = Guardian Angel \n" +
   "+ Needlessly large rod = Locket of the Iron Solari \n" +
   "+ Recurve bow = Phantom Dancer \n" +
   "+ Tear of the goddess = Frozen Heart \n" +
   "+ Chain vest = Thornmail \n" +
   "+ Negatron cloak = Sword Breaker \n" +
   "+ Giant's belt = Red Buff \n" +
-  "+ Spatula = Knight's Vyr", "./images/chainvest.png")
-
-const nlr = new Item("+ 20 Spell Damage","","","+ B.F. Sword = Hextech Gunblade \n" +
+  "+ Spatula = Knight's Vow", "./images/chainvest.png")
+const nlr = new Item("Needlessly Large Rod","+ 20 Spell Damage","-","-","+ B.F. Sword = Hextech Gunblade \n" +
   "+ Needlessly large rod = Rabadon's Deathcap \n" +
   "+ Recurve bow = Guinsoo's Rageblade \n" +
   "+ Tear of the goddess = Luden's Echo \n" +
@@ -65,8 +64,113 @@ const nlr = new Item("+ 20 Spell Damage","","","+ B.F. Sword = Hextech Gunblade 
   "+ Negatron cloak = Ionic Spark \n" +
   "+ Giant's belt = Morellonomicon \n" +
   "+ Spatula = Yuumi","./images/needlessly.png")
+const recurve = new Item("Recurve Bow","+15% Attack Speed","-","-","+ B.F. Sword = Sword of the Divine \n" +
+  "+ Needlessly large rod = Guinsoo's Rageblade \n" +
+  "+ Recurve bow = Rapid Fire Cannon \n" +
+  "+ Tear of the goddess = Statikk Shiv \n" +
+  "+ Chain vest = Phantom Dancer \n" +
+  "+ Negatron cloak = Cursed Blade \n" +
+  "+ Giant's belt = Titanic Hydra \n" +
+  "+ Spatula = Blade of the Ruined King","./images/recurve.png")
+const negatron = new Item("Negatron Cloak","+20 Magic Resist","-","-","+ B.F. Sword = The Bloodthirster \n " +
+  "+ Needlessly large rod = Ionic Spark \n" +
+  "+ Recurve bow = Cursed Blade \n" +
+  "+ Tear of the goddess = Hush \n" +
+  "+ Chain vest = Sword Breaker \n" +
+  "+ Negatron cloak = Dragon's Claw \n" +
+  "+ Giant's belt = Zephyr \n" +
+  "+ Spatula = Runaan's Hurricane","./images/negatron.png")
+const giantsBelt = new Item("Giant's Belt","+200 HP","-","-","+ B.F. Sword = Zeke's Herald \n" +
+  "+ Needlessly large rod = Morellonomicon \n" +
+  "+ Recurve bow = Titanic Hydra \n" +
+  "+ Tear of the goddess = Redemption \n" +
+  "+ Chain vest = Red Buff \n" +
+  "+ Negatron cloak = Zephyr \n" +
+  "+ Giant's belt = Warmog's Armor \n" +
+  "+ Spatula = Frozen Mallet","./images/giants.png")
+const spatula = new Item("Spatula","It must do something...","-","-","+ B.F. Sword = Youmuu's Ghostblade \n" +
+  "+ Needlessly large rod = Yuumi \n" +
+  "+ Recurve bow = Blade of the Ruined King \n" +
+  "+ Tear of the goddess = Darkin \n" +
+  "+ Chain vest = Knight's Vow \n" +
+  "+ Negatron cloak = Runaan's Hurricane \n" +
+  "+ Giant's belt = Frozen Mallet \n" +
+  "+ Spatula = Force of Nature","./images/spatula.png")
+const infinity = new Item("Infinity Edge","-","Critical strikes deal +100% damage",
+  "B.F Sword + B.F Sword","-","./images/infinity.png")
+const hextech = new Item("Hextech Gunblade","-","Heal for 25% of all damage dealt",
+  "B.F Sword x2","-","./images/gunblade.png")
+const sotd = new Item("Sword of the Divine","-","Each second, gain a 5% chance to gain 100% critical strike",
+  " B.F Sword + Recurve Bow","-","./images/divine.png")
+const sOs = new Item("Spear of Shojin","-","After casting a spell, gain 15% of max mana per attack",
+  " Tear of the Goddess + B.F Sword","-","./images/Spearofshojin.png")
+const guardian = new Item("Guardian Angel","-","Wearer gets revived with 500 HP",
+  " B.F Sword + Chain Vest","-","./images/guardianAngel.png")
+const theBT = new Item("The Bloodthirster","-","Attacks heal for 35% of damage dealt",
+  "B.F Sword + Negatron Cloak","-","./images/bloodthirster.png")
+const zekes = new Item("Zeke's Herald","-","Adjacent allies gain +10% Attack Speed",
+  "B.F Sword + Giant's Belt","-","./images/zekes.png")
+const ghostblade = new Item("Yoummu's Ghostblade","-","Wearer is also an Assassin",
+  "B.F Sword + Spatula","-","./images/ghostblade.png")
+const rabadons = new Item("Rabadon's Deathcap","-","Wearer's Ability Damage is increased by 50%",
+  "Needlesly Large Rod x2","-","./images/rabadon.png")
+const rageblade = new Item("Guinsoo's Rageblade","-","Attacks give 3% Attack Speed, stacks infinitely",
+  "Needlessly Large Rod + Recurve Bow","-","./images/rageblade.png")
+const luden = new Item("Luden's Echo","-","Deal 200 splash damage on ability hit",
+  "Needlessly Large Rod + Tear of the Goddess","-","./images/luden.png")
+const locket = new Item("Locket of the Iron Solari","-","On start of combat adjacent allies get 200 shield",
+  "Needlessly Large Rod + Chain Vest","-","./images/solari.png")
+const ionic = new Item("Ionic Spark","-","Whenever an enemy casts a spell they take 200 damage",
+  "Needlessly Large Rod + Negatron Cloak","-","./images/ionic.png")
+const morello = new Item("Morellonomicon","-","Spells burn 5% of the enemy max HP per second",
+  "Needlessly Large Rod + Giant's Belt","-","./images/morello.png")
+const yuumi = new Item("Yuumi","-","Wearer is also a Sorcerer","-","Needlessly Large Rod + Spatula",
+  "./images/yuumi.png")
+const rfc = new Item("Rapid Fire Cannon","-","Attacks cannot be dodged. Attack Range is doubled",
+  "Recurve Bow x2","-","./images/rapidfire.png")
+const statikk = new Item("Statikk Shiv", "-", "Every third attack deals 100 splash magical damage",
+  "Recurve Bow + Tear of the Goddess","-","./images/stattik.png")
+const cursed = new Item("Cursed Blade", "-", "Attacks have a low chance to Shrink",
+  "Recurve Bow + Negatron Cloak","-","./images/cursedblade.png")
+const pd = new Item("Phantom Dancer", "-", "Wearer dodges all critical strikes",
+  "Recurve Bow + Chain Vest","-","./images/phantom.png")
+const titanic = new Item("Titanic Hydra", "-", "Attacks deal 10% of the wearer's max HP as splash damage",
+  "Recurve Bow + Giant's Belt","-","./images/giants.png")
+const botrk = new Item("Blade of the Ruined King", "-", "Wearer is also a Blademaster", "Recurve Bow + Spatula","-",
+  "./images/ruinedking.png")
+const seraph = new Item("Seraph's Embrance", "-", "Regain 20 mana each time a spell is cast",
+  "Tear of the Goddess x2","-","./images/seraph.png")
+const frozenHeart = new Item("Frozen Heart", "-", "Adjacent enemies lose 20% Attack Speed",
+  "Tear of the Goddess + Tear of the Goddess","-","./images/frozen.png")
+const hush = new Item("Hush", -"", "Attacks have a high chance to Silence",
+  "Negatron Cloak + Tear of the Goddess","-","./images/hush.png")
+const redemption = new Item("Redemption", "-", "On death heal all nearby allies for 1000 HP",
+  "Tear of the Goddess + Giant's Belt","-","./images/redemption.png")
+const darkin = new Item("Darkin", "-", "Wearer is also a Demon", "Tear of the Goddess + Spatula","-",
+  "./images/darkin.png")
+const thornmail = new Item("Thornmail", "-", "Reflect 35% of all damage taken from attacks",
+  "Chain Vest x2","-","./images/thornmail.png")
+const swordBreaker = new Item("Sword Breaker", "-", "Attacks have a chance to disarm",
+  "Chain Vest + Negatron Cloak","-","./images/swordbreaker.png")
+const red = new Item("Red Buff", "-", "Attacks burn for 2.5% max HP and disable healing",
+  "Chain Vest + Giant's Belt","-","./images/redbuff.png")
+const knightVow = new Item("Knight's Vow", "-", "Wearer is also a Knight", "Chain Vest + Spatula","-",
+  "./images/knights.png")
+const runaans = new Item("Runaan's Hurricane", "-", "Attacks hit additional enemies and deal 50% damage",
+  "Negatron Cloak + Spatula","-","./images/runaans.png")
+const zephyr = new Item("Zephyr", "-", "On start of combat Banish an enemy", "Negatron Cloak + Giant's Belt","-",
+  "./images/zephyr.png")
+const dragonClaw = new Item("Dragon's Claw", "-", "83% resistance to magic damage", "Negatron Cloak x2","-",
+  "./images/dragons.png")
+const warmog = new Item("Warmog's Armour", "-", "Regenerate 3% of max HP per second", "Giant's Belt x2","-",
+  "./images/warmogs.png")
+const frozenMallet = new Item("Frozen Mallet", "-", "Wearer is also a Glacial", "Giant's Belt + Spatula","-",
+  "./images/frozenmallet.png")
+const fON= new Item("Force Of Nature", "-", "Gain +1 members", "Spatula x2","-","./images/forceofnature.png")
 
-var attachment = null;
+var attachment = null
+var running = 0
+selectedItem = null
 
 bot.on('ready', () => {
   console.log(`Logged in`)
@@ -75,287 +179,145 @@ bot.on('ready', () => {
 bot.on('message', msg => {
   if (msg.content === '¬help') {
     msg.reply("This bot has all information for " +
-    " Teamfight Tactics (Riot's version of autochess)")
+    " Teamfight Tactics")
   }
 });
-
+function printItem(selectedItem, message) {
+  // Create the attachment using Attachment
+ attachment = new Attachment(selectedItem.getpicURL())
+ // Send the attachment in the message channel
+ message.channel.send(attachment)
+ message.reply(selectedItem.getstatBonuses() + selectedItem.geteffect() +
+ "\n Combinations:\n" + selectedItem.getcreates() + "\n Made from: " +
+  selectedItem.getcontains());
+}
 bot.on('message', message => {
-    // Checks what the messagei s and acts accordingly
-    if (message.content === "b.f sword") {
-    // Create the attachment using Attachment
-    attachment = new Attachment(bfSword.getpicURL())
-    // Send the attachment in the message channel
-    message.channel.send(attachment)
-    message.reply(bfSword.getstatBonuses() +
-    "\n Combinations:\n" + bfSword.getcreates());
-  }
-  else if (message.content === "tear of the goddess") {
-    attachment = new Attachment(tear.getpicURL())
-    // Send the attachment in the message channel
-    message.channel.send(attachment)
-    message.reply(tear.getstatBonuses() +
-    "\n Combinations:\n" + tear.getcreates());
-  }
-  else if (message.content === "chain vest") {
-    attachment = new Attachment(chainvest.getpicURL())
-    // Send the attachment in the message channel
-    message.channel.send(attachment)
-    message.reply(chainvest.getstatBonuses() +
-    "\n Combinations:\n " + chainvest.getcreates());
-  }
-  else if (message.content === "needlessly large rod") {
-    attachment = new Attachment(nlr.getpicURL())
-    // Send the attachment in the message channel
-    message.channel.send(attachment)
-    message.reply(nlr.getstatBonuses() +
-    "\n Combinations:\n" + nlr.getcreates());
-  }
-  else if (message.content === "recurve bow"){
-    attachment = new Attachment('./images/recurve.png')
-    message.reply("+15% Attack Speed")
-    message.channel.send(attachment)
-    message.channel.send("Combinations ========= \n " +
-    "+ B.F. Sword = Sword of the Divine \n" +
-    "+ Needlessly large rod = Guinsoo's Rageblade \n" +
-    "+ Recurve bow = Rapid Fire Cannon \n" +
-    "+ Tear of the goddess = Statikk Shiv \n" +
-    "+ Chain vest = Phantom Dancer \n" +
-    "+ Negatron cloak = Cursed Blade \n" +
-    "+ Giant's belt = Titanic Hydra \n" +
-    "+ Spatula = Blade of the Ruined King")
-  }
-  else if (message.content === "negatron cloak") {
-    attachment = new Attachment('./images/negatron.png')
-    message.reply("+ 20 Magic Resistance")
-    message.channel.send(attachment)
-    message.channel.send("Combinations ========= \n " +
-    "+ B.F. Sword = The Bloodthirster \n " +
-    "+ Needlessly large rod = Ionic Spark \n" +
-    "+ Recurve bow = Cursed Blade \n" +
-    "+ Tear of the goddess = Hush \n" +
-    "+ Chain vest = Sword Breaker \n" +
-    "+ Negatron cloak = Dragon's Claw \n" +
-    "+ Giant's belt = Zephyr \n" +
-    "+ Spatula = Runaan's Hurricane")
-  }
-  else if (message.content === "giant's belt") {
-    attachment = new Attachment('./images/giants.png')
-    message.reply("+ 200 Health Points")
-    message.channel.send(attachment)
-    message.channel.send("Combinations ========= \n " +
-    "+ B.F. Sword = Zeke's Herald \n" +
-    "+ Needlessly large rod = Morellonomicon \n" +
-    "+ Recurve bow = Titanic Hydra \n" +
-    "+ Tear of the goddess = Redemption \n" +
-    "+ Chain vest = Red Buff \n" +
-    "+ Negatron cloak = Zephyr \n" +
-    "+ Giant's belt = Warmog's Armor \n" +
-    "+ Spatula = Frozen Mallet")
-  }
-  else if (message.content === "spatula") {
-    attachment = new Attachment('./images/spatula.png')
-    message.reply(" Unknown effects ")
-    message.channel.send(attachment)
-    message.channel.send("Combinations ========= \n " +
-    "+ B.F. Sword = Youmuu's Ghostblade \n" +
-    "+ Needlessly large rod = Yuumi \n" +
-    "+ Recurve bow = Blade of the Ruined King \n" +
-    "+ Tear of the goddess = Darkin \n" +
-    "+ Chain vest = Knight's Vyr \n" +
-    "+ Negatron cloak = Runaan's Hurricane \n" +
-    "+ Giant's belt = Frozen Mallet \n" +
-    "+ Spatula = Force of Nature")
-  }
-
-  // combo items
-  else if (message.content === "infinity edge") {
-    attachment = new Attachment ('./images/infinity.png')
-    message.reply("Critical strikes deal +100% damage")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "hextech gunblade") {
-    attachment = new Attachment('./images/gunblade.png')
-    message.reply("Heal for 25% of all damage dealt")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "sword of the divine") {
-    attachment = new Attachment('./images/divine.png')
-    message.reply("Each second, gain a 5% chance to gain 100% critical strike ")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "spear of shojin") {
-    attachment = new Attachment('./images/Spearofshojin.png')
-    message.reply("After casting a spell, gain 15% of max mana per attack")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "guardian angel") {
-    attachment = new Attachment('./images/GuardianAngel.png')
-    message.reply("Wearer gets revived with 500 HP")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "the bloodthirster") {
-    attachment = new Attachment ('./images/bloodthirster.png')
-    message.reply("Attacks heal for 35% of damage dealt")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "zeke's herald" ) {
-    attachment = new Attachment ('./images/zekes.png')
-    message.reply("Adjacent allies gain +10% Attack Speed")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "youmuu's ghostblade"){
-    attachment = new Attachment ('./images/ghostblade.png')
-    message.reply("Wearer is also an Assassin")
-    message.channel.send(attachment)
-  }
-
-  else if (message.content === "rabadon's deathcap"){
-    attachment = new Attachment ('./images/rabadon.png')
-    message.reply("Wearer's Ability Damage is increased by 50%")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "guinsoo's rageblade"){
-    attachment = new Attachment ('./images/rageblade.png')
-    message.reply("Attacks give 3% Attack Speed, stacks infinitely")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "luden's echo"){
-    attachment = new Attachment ('./images/luden.png')
-    message.reply("Deal 200 splash damage on ability hit")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "locket of the iron solari"){
-    attachment = new Attachment ('./images/solari.png')
-    message.reply("On start of combat adjacent allies get 200 shield")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "ionic spark"){
-    attachment = new Attachment ('./images/ionic.png')
-    message.reply("Whenever an enemy casts a spell they take 200 damage")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "morellonomicon"){
-    attachment = new Attachment ('./images/Morello.png')
-    message.reply("Spells burn 5% of the enemy max HP per second")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "yuumi"){
-    attachment = new Attachment ('./images/yuumi.png')
-    message.reply("Wearer is also a Sorcerer")
-    message.channel.send(attachment)
-  }
-
-  else if (message.content === "rapid fire cannon"){
-    attachment = new Attachment ('./images/rapidfire.png')
-    message.reply("Attacks cannot be dodged. Attack Range is doubled")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "statikk shiv"){
-    attachment = new Attachment ('./images/stattik.png')
-    message.reply("Every third attack deals 100 splash magical damage")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "cursed blade"){
-    attachment = new Attachment ('./images/cursedblade.png')
-    message.reply("Attacks have a low chance to Shrink")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "phantom dancer"){
-    attachment = new Attachment ('./images/phantom.png')
-    message.reply("Wearer dodges all critical strikes")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "titanic hydra"){
-    attachment = new Attachment ('./images/titanic.png')
-    message.reply("Attacks deal 10% of the wearer's max HP as splash damage")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "blade of the ruined king"){
-    attachment = new Attachment ('./images/ruinedking.png')
-    message.reply("Wearer is also a Blademaster")
-    message.channel.send(attachment)
-  }
-
-  else if (message.content === "seraph's embrace"){
-    attachment = new Attachment ('./images/seraph.png')
-    message.reply("Regain 20 mana each time a spell is cast")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "frozen heart"){
-    attachment = new Attachment ('./images/frozen.png')
-    message.reply("Adjacent enemies lose 20% Attack Speed")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "hush"){
-    attachment = new Attachment ('./images/hush.png')
-    message.reply("Attacks have a high chance to Silence")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "redemption"){
-    attachment = new Attachment ('./images/redemption.png')
-    message.reply("On death heal all nearby allies for 1000 HP")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "darkin"){
-    attachment = new Attachment ('./images/darkin.png')
-    message.reply("Wearer is also a Demon")
-    message.channel.send(attachment)
-  }
-
-  else if (message.content === "thornmail"){
-    attachment = new Attachment ('./images/thornmail.png')
-    message.reply("Reflect 35% of all damage taken from attacks")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "sword breaker"){
-    attachment = new Attachment ('./images/swordbreaker.png')
-    message.reply("Attacks have a chance to disarm")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "red buff"){
-    attachment = new Attachment ('./images/redbuff.png')
-    message.reply("Attacks burn for 2.5% max HP and disable healing")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "knight's vow"){
-    attachment = new Attachment ('./images/knights.png')
-    message.reply("Wearer is also a Knight")
-    message.channel.send(attachment)
-  }
-
-  else if (message.content === "runaan's hurricane"){
-    attachment = new Attachment ('./images/runaans.png')
-    message.reply("Attacks hit additional enemies and deal 50% damage")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "zephyr"){
-    attachment = new Attachment ('./images/zephyr.png')
-    message.reply("On start of combat Banish an enemy")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "dragon's claw"){
-    attachment = new Attachment ('./images/dragons.png')
-    message.reply("83% resistance to magic damage")
-    message.channel.send(attachment)
-  }
-
-  else if (message.content === "warmog's armor"){
-    attachment = new Attachment ('./images/warmogs.png')
-    message.reply("Regenerate 3% of max HP per second")
-    message.channel.send(attachment)
-  }
-  else if (message.content === "frozen mallet"){
-    attachment = new Attachment ('./images/frozenmallet.png')
-    message.reply("Wearer is also a Glacial")
-    message.channel.send(attachment)
-  }
-
-  else if (message.content === "force of nature"){
-    attachment = new Attachment ('./images/forceofnature.png')
-    message.reply("Gain +1 members")
-    message.channel.send(attachment)
-  }
-});
+    switch(message.content) {
+      case "b.f sword":
+        printItem(bfSword,message)
+      break;
+      case "tear of the goddess":
+        printItem(tear,message)
+      break;
+      case "chain vest":
+        printItem(chainvest,message)
+      break;
+      case "needlessly large rod":
+        printItem(nlr,message)
+      break;
+      case "recurve bow":
+        printItem(recurve,message)
+      break;
+      case "giant's belt":
+        printItem(giantsBelt,message)
+      break;
+      case "negatron cloak":
+        printItem(negatron,message)
+      break;
+      case "spatula":
+        printItem(spatula,message)
+      break;
+      case "infinity edge":
+        printItem(infinity,message)
+      break;
+      case "hextech gunblade":
+        printItem(hextech,message)
+      break;
+      case "sword of the divine":
+        printItem(sotd,message)
+      break;
+      case "spear of shojin":
+        printItem(sOs,message)
+      break;
+      case "guardian angel":
+        printItem(guardian,message)
+      break;
+      case "the bloodthirster":
+        printItem(theBT,message)
+      break;
+      case "zeke's herald":
+        printItem(zekes,message)
+      break;
+      case "yoummu's ghostblade":
+        printItem(ghostblade,message)
+      break;
+      case "rabadon's deathcap":
+        printItem(rabadons,message)
+      break;
+      case "guinsoo's rageblade":
+        printItem(rageblade,message)
+      break;
+      case "luden's echo":
+        printItem(luden,message)
+      break;
+      case "locket of the iron solari":
+        printItem(locket,message)
+      break;
+      case "ionic spark":
+        printItem(ionic,message)
+      break;
+      case "morellonomicon":
+        printItem(morello,message)
+      break;
+      case "yuumi":
+        printItem(yuumi,message)
+      break;
+      case "rapidfire cannon":
+        printItem(rfc,message)
+      break;
+      case "statikk shiv":
+        printItem(statikk,message)
+      break;
+      case "blade of the ruined king":
+        printItem(botrk,message)
+      break;
+      case "seraph's embrace":
+        printItem(seraph,message)
+      break;
+      case "frozen heart":
+        printItem(frozenHeart,message)
+      break;
+      case "hush":
+        printItem(hush,message)
+      break;
+      case "redemption":
+        printItem(redemption,message)
+      break;
+      case "darkin":
+        printItem(darkin,message)
+      break;
+      case "thornmail":
+        printItem(thornmail,message)
+      break;
+      case "sword breaker":
+        printItem(swordBreaker,message)
+      break;
+      case "red buff":
+        printItem(red,message)
+      break;
+      case "knight's vow":
+        printItem(knightVow,message)
+      break;
+      case "runaan's hurricane":
+        printItem(runaan,messages)
+      break;
+      case "zephyr":
+        printItem(zephyr,message)
+      break;
+      case "dragon's claw":
+        printItem(dragonClaw,message)
+      break;
+      case "warmog's armour":
+        printItem(warmog,message)
+      break;
+      case "frozen mallet":
+        printItem(frozenMallet,message)
+      break;
+      case "force of nature":
+      printItem(fOn,message)
+      break;
+    }
+  });
 
 // log in your bot using the token given by the website!
 bot.login('NTkzNDQwNDA3MDUzMTM5OTcw.XRN6-g.X2T7QPYF7IFkesHzKSz37q9OCqE');
